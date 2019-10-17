@@ -22,7 +22,7 @@
 			if ($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png")
 			{
 				$imagen = round(microtime(true)) . '.' . end($ext);
-				move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/articulos/" . $imagen);
+				move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/articulos/" . $imagen)."";
 			}
 		}
       if(empty($idarticulo))
