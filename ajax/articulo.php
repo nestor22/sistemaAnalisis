@@ -1,7 +1,6 @@
 <?php
   require_once "../modelos/Articulo.php";
   $articulo = new Articulo();
-
   $idarticulo = isset($_POST["idartidulo"]) ? limpiarCadena($_POST["idartidulo"]):"";
   $idcategoria = isset($_POST["idcategoria"]) ? limpiarCadena($_POST["idcategoria"]):"";
   $codigo = isset($_POST["codigo"])?limpiarCadena($_POST["codigo"]):"";
@@ -9,7 +8,6 @@
   $stock = isset($_POST["stock"])?limpiarCadena($_POST["stock"]):"";
   $descripcion = isset($_POST["descripcion"])?limpiarCadena($_POST["descripcion"]):"";
   $imagen = isset($_POST["imagen"])?limpiarCadena($_POST["imagen"]):"";
-
   switch ($_GET["op"]) {
     case 'guardaryeditar':
     if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name']))
@@ -35,23 +33,18 @@
         echo $rspta ? "Articulo actualizado":"Articulo no se puede editar";
       }
     break;
-
     case 'desactivar':
     $rspta = $articulo->desactivar($idarticulo);
     echo $rspta ? "Articulo Desactivado":"Articulo no se puede Desactivar";
     break;
-
     case 'activar':
     $rspta = $articulo->activar($idarticulo);
     echo $rspta ? "Articulo Activado":"Articulo no se puede Activar";
     break;
-
     case 'mostrar':
     $rspta = $articulo->mostrar($idarticulo);
 		echo json_encode($rspta);
-
     break;
-
     case 'listar':
     $rspta = $articulo->listar();
     $data =Array();
@@ -74,8 +67,6 @@
      );
      echo json_encode($results);
     break;
-
-
     case "selectCategoria":
     require_once "../modelos/Categoria.php";
 				$categoria = new Categoria();
@@ -84,7 +75,5 @@
 					echo '<option value=' . $reg->idcategoria . '>' . $reg->nombre . '</option>';
 				}
     break;
-
     }
-
  ?>
