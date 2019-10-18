@@ -11,7 +11,7 @@ require 'header.php';
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <h1 class="box-title">Permisos <button class="btn btn-success" onclick="mostrarform(true)" id="btnagregar"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
+                          <h1 class="box-title">Permisos </h1>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
@@ -78,5 +78,5 @@ require 'header.php';
 ?>
 <script type="text/javascript" src="../public/js/JsBarcode.all.min.js"></script>
 <script type="text/javascript" src="../public/js/jquery.PrintArea.js"></script>
-<script type="text/javascript" src="scripts/categoria.js">
+<script type="text/javascript" src="scripts/permiso.js">
 </script>
