@@ -70,6 +70,11 @@ require 'header.php';
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Codigo:</label>
                             <input class="form-control" type="text" name="codigo" id="codigo" placeholder="codigo de barras">
+                            <button class="btn btn-success" type="button" onclick="generarbarcode()">Generar</button>
+                            <div>
+                            <svg id="barcode"></svg>
+                            
+                            </div>
                           </div>
 
                           <div class="from-group col-lg-12 col-md-12 col-sm-12 col-xs-12">

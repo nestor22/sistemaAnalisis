@@ -31,4 +31,4 @@ Class Articulo {
     return ejecutarConsulta ($sql);
   }
 }
- ?>
+?>

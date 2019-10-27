@@ -99,26 +99,38 @@ function guardaryeditar(e)
 	});
 	limpiar();
 }
-
 function mostrar (idarticulo)
 {
 	$.post("../ajax/articulo.php?op=mostrar",{idarticulo : idarticulo}, function(data, status)
 	{
 	data = JSON.parse(data);
+
 	mostrarform(true);
-	$("#idarticulo").val(data.nombres);
-	$("#codigo").val(data.nombres);
-	$("#stock").val(data.nombres);
-	$("#nombre").val(data.nombres);
-	$("#nombre").val(data.nombres);
+	$("#nombre").val(data.nombre);
 	$("#descripcion").val(data.descripcion);
 	$("#idcategoria").val(data.idcategoria);
+	$("#idcategoria").selectpicker('refresh');
 
 	})
-}
+}/*
+function mostrar(idarticulo)
+{
+	$.post("../ajax/articulo.php?op=mostrar",{idarticulo : idarticulo}, function(data, status)
+	{
+	data = JSON.parse(data);
+	mostrarform(true);
+	$("#idcategoria").val(data.idcategoria);
+	$("#idcategoria").selectpicker('refresh');
+	$("#codigo").val(data.codigo);
+	$("#nombre").val(data.nombre);
+	$("#stock").val(data.stock);
+	$("#descripcion").val(data.descripcion);
+	$("#idarticulo").val(data.idarticulo);
+})
+}*/
 function desactivar(idarticulo){
 	bootbox.confirm("Esta seguro que deces desactivar el articulo?", function(result){
-		if(result){
+		if(result){ 
 			$.post("../ajax/articulo.php?op=desactivar",{idarticulo : idarticulo}, function(e){
 				bootbox.alert(e);
 				tabla.ajax.reload();
@@ -137,5 +149,10 @@ function activar(idarticulo){
 		}
 	})
 
+}
+function generarbarcode(){
+	codigo=$("#codigo").val();
+	JsBarcode("#barcode", codigo);
+	
 }
 init();

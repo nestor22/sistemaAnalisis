@@ -101,7 +101,7 @@ function mostrar (idcategoria)
 	{
 	data = JSON.parse(data);
 	mostrarform(true);
-	$("#nombre").val(data.nombres);
+	$("#nombre").val(data.nombre);
 	$("#descripcion").val(data.descripcion);
 	$("#idcategoria").val(data.idcategoria);
 
