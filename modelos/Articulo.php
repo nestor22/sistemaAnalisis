@@ -1,6 +1,6 @@
 <?php
 require "../config/conexion.php";
-Class Articulo {
+Class Articulo{
 
   public function __construct(){
 

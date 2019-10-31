@@ -10,6 +10,7 @@ function init(){
 		$("#idcategoria").html(r);
 		$("#idcategoria").selectpicker('refresh');
 	});
+	$("#imagenmuestra").hide();
 }
 function limpiar()
 {
@@ -17,18 +18,26 @@ function limpiar()
 	$("#stock").val("");
 	$("#nombre").val("");
 	$("#descripcion").val("");
+	$("$imagenactual").val("");
+	$("#imagenmuestra").attr("src", "");
+	$("#print").hide();
+	$("#idarticulo").val("");
+
+
+
 }
 
 //Función mostrar formulario
 function mostrarform(flag)
 {
-	limpiar();
+	//limpiar();
 	if (flag)
 	{
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		$("#btnGuardar").prop("disabled",false);
 		$("#btnagregar").hide();
+		limpiar();
 	}
 	else
 	{
@@ -64,7 +73,7 @@ function listar()
 				{
 					url: '../ajax/articulo.php?op=listar',
 					type : "get",
-					dataType : "json",
+						dataType : "json",
 					error: function(e){
 						console.log(e.responseText);
 					}
@@ -99,20 +108,6 @@ function guardaryeditar(e)
 	});
 	limpiar();
 }
-function mostrar (idarticulo)
-{
-	$.post("../ajax/articulo.php?op=mostrar",{idarticulo : idarticulo}, function(data, status)
-	{
-	data = JSON.parse(data);
-
-	mostrarform(true);
-	$("#nombre").val(data.nombre);
-	$("#descripcion").val(data.descripcion);
-	$("#idcategoria").val(data.idcategoria);
-	$("#idcategoria").selectpicker('refresh');
-
-	})
-}/*
 function mostrar(idarticulo)
 {
 	$.post("../ajax/articulo.php?op=mostrar",{idarticulo : idarticulo}, function(data, status)
@@ -125,9 +120,12 @@ function mostrar(idarticulo)
 	$("#nombre").val(data.nombre);
 	$("#stock").val(data.stock);
 	$("#descripcion").val(data.descripcion);
+	$("#imagenmuestra").show();
+	$("#imagenmuestra").attr("src", "../files/articulos/"+data.imagen);
+	$("#imagenactual").val(data.imagen);
 	$("#idarticulo").val(data.idarticulo);
 })
-}*/
+}
 function desactivar(idarticulo){
 	bootbox.confirm("Esta seguro que deces desactivar el articulo?", function(result){
 		if(result){ 
@@ -153,6 +151,10 @@ function activar(idarticulo){
 function generarbarcode(){
 	codigo=$("#codigo").val();
 	JsBarcode("#barcode", codigo);
+	$("$print").show();
 	
+}
+function imprimir(){
+	$("#print").printArea();
 }
 init();
