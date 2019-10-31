@@ -54,7 +54,7 @@ switch ($_GET["op"]) {
 			echo json_encode($results);
             break;
             case 'listarc':
-			$rspta = $persona-> listarp();
+			$rspta = $persona-> listarca();
 			$data  = Array();
 		 while ($reg = $rspta -> fetch_object() ) {
 			$data[] = array(
