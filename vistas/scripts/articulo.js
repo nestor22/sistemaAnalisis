@@ -18,7 +18,7 @@ function limpiar()
 	$("#stock").val("");
 	$("#nombre").val("");
 	$("#descripcion").val("");
-	$("$imagenactual").val("");
+	$("#imagenactual").val("");
 	$("#imagenmuestra").attr("src", "");
 	$("#print").hide();
 	$("#idarticulo").val("");
@@ -30,14 +30,13 @@ function limpiar()
 //Función mostrar formulario
 function mostrarform(flag)
 {
-	//limpiar();
+	limpiar();
 	if (flag)
 	{
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		$("#btnGuardar").prop("disabled",false);
 		$("#btnagregar").hide();
-		limpiar();
 	}
 	else
 	{
@@ -47,15 +46,12 @@ function mostrarform(flag)
 		$("#btnagregar").show();
 	}
 }
-
-//Función cancelarform
 function cancelarform()
 {
 	limpiar();
 	mostrarform(false);
 }
 
-//Función Listar
 function listar()
 {
 	tabla=$('#tbllistado').dataTable(
@@ -83,28 +79,23 @@ function listar()
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }
-//Función para guardar o editar
-
 function guardaryeditar(e)
 {
 	e.preventDefault(); //No se activará la acción predeterminada del evento
 	$("#btnGuardar").prop("disabled",true);
 	var formData = new FormData($("#formulario")[0]);
-
 	$.ajax({
 			url: "../ajax/articulo.php?op=guardaryeditar",
 	    type: "POST",
 	    data: formData,
 	    contentType: false,
 	    processData: false,
-
 	    success: function(datos)
 	    {
 	          alert(datos);
 	          mostrarform(false);
 	          tabla.ajax.reload();
 	    }
-
 	});
 	limpiar();
 }
@@ -128,7 +119,7 @@ function mostrar(idarticulo)
 }
 function desactivar(idarticulo){
 	bootbox.confirm("Esta seguro que deces desactivar el articulo?", function(result){
-		if(result){ 
+		if(result){
 			$.post("../ajax/articulo.php?op=desactivar",{idarticulo : idarticulo}, function(e){
 				bootbox.alert(e);
 				tabla.ajax.reload();
@@ -152,7 +143,7 @@ function generarbarcode(){
 	codigo=$("#codigo").val();
 	JsBarcode("#barcode", codigo);
 	$("$print").show();
-	
+
 }
 function imprimir(){
 	$("#print").printArea();

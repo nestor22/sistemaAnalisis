@@ -1,39 +1,25 @@
 var tabla;
-
-
 function init(){
 	mostrarform(false);
 	listar();
-
 	$("#formulario").on("submit",function(e)
 	{
 		guardaryeditar(e);
 	})
-	// cargamos los items al select categoria
-	$.post("../ajax/articulo.php?op=selectCategoria", function(r){
-		$("#idcategoria").html(r);
-		$('#idcategoria').selectpicker('refresh');
-	});
-	$("#imagenmuestra").hide();
 }
 function limpiar()
 {
-  $("#codigo").val("");
 	$("#nombre").val("");
-	$("#descripcion").val("");		
-	$("#idcategoria").val("");
-  $("#stock").val("");
-  $("#imagenmuestra").attr("src", "");
-  $("#imagenactual").val("");
-  $("#print").hide();
-  $("#idarticulo").val("");
-
-
-
-
+	$("#num_documento").val("");
+    $("#direccion").val("");
+    $("#telefono").val("");
+    $("#email").val("");
+	$("#idpersona").val("");
+    
+    
 }
 
-//Función mostrar formularioe
+//Función mostrar formulario
 function mostrarform(flag)
 {
 	limpiar();
@@ -59,15 +45,13 @@ function cancelarform()
 	limpiar();
 	mostrarform(false);
 }
-
-//Función Listar
 function listar()
 {
 	tabla=$('#tbllistado').dataTable(
 	{
-		"aProcessing": true,//Activamos el procesamiento del datatables
-	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
-	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
+		"aProcessing": true,
+	    "aServerSide": true,
+	    dom: 'Bfrtip',
 	    buttons: [
 		            'copyHtml5',
 		            'excelHtml5',
@@ -76,7 +60,7 @@ function listar()
 		        ],
 		"ajax":
 				{
-					url: '../ajax/articulo.php?op=listar',
+					url: '../ajax/persona.php?op=listarp',
 					type : "get",
 					dataType : "json",
 					error: function(e){
@@ -84,20 +68,18 @@ function listar()
 					}
 				},
 		"bDestroy": true,
-		"iDisplayLength": 5,//Paginación
-	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
+		"iDisplayLength": 5,
+	    "order": [[ 0, "desc" ]]
 	}).DataTable();
 }
-//Función para guardar o editar
-
 function guardaryeditar(e)
 {
-	e.preventDefault(); //No se activará la acción predeterminada del evento
+	e.preventDefault(); 
 	$("#btnGuardar").prop("disabled",true);
 	var formData = new FormData($("#formulario")[0]);
 
 	$.ajax({
-			url: "../ajax/articulo.php?op=guardaryeditar",
+			url: "../ajax/persona.php?op=guardaryeditar",
 	    type: "POST",
 	    data: formData,
 	    contentType: false,
@@ -105,7 +87,7 @@ function guardaryeditar(e)
 
 	    success: function(datos)
 	    {
-	          alert(datos);
+	          bootbox.alert(datos);
 	          mostrarform(false);
 	          tabla.ajax.reload();
 	    }
@@ -114,32 +96,27 @@ function guardaryeditar(e)
 	limpiar();
 }
 
-function mostrar (idarticulo)
+function mostrar (idpersona)
 {
-	$.post("../ajax/articulo.php?op=mostrar",{idarticulo : idarticulo}, function(data, status)
+	$.post("../ajax/persona.php?op=mostrar",{idpersona : idpersona}, function(data, status)
 	{
 	data = JSON.parse(data);
 	mostrarform(true);
-	$("#idcategoria").val(data.idcategoria);
-	$("#idcategoria").selectpicker('refresh');
-	
-  $("#codigo").val(data.codigo);
-  $("#nombre").val(data.nombre);
-  $("#stock").val(data.stock);
-	$("#descripcion").val(data.descripcion);
-	$("#imagenmuestra").show();
-	$("#imagenmuestra").attr("src","../files/articulos/"+data.imagen);
-	$("#imagenactual").val(data.imagen);
-
-	$("#idarticulo").val(data.idarticulo);
-	generarbarcode();
+    $("#nombre").val(data.nombre);
+    $("#tipodocumento").val(data.tipo_documento);
+    $("#tipodocumento").selectpicker('refresh');
+	$("#numdocumento").val(data.num_documento);
+	$("#direccion").val(data.direccion);
+	$("#telefono").val(data.telefono);
+	$("#email").val(data.email);
+    $("#idpersona").val(data.idpersona);
 
 	})
 }
-function desactivar(idarticulo){
-	bootbox.confirm("Esta seguro que deces desactivar el articulo?", function(result){
+function eliminar(idpersona){
+	bootbox.confirm("Esta seguro que deces eliminar al proveedor?", function(result){
 		if(result){
-			$.post("../ajax/articulo.php?op=desactivar",{idarticulo : idarticulo}, function(e){
+			$.post("../ajax/persona.php?op=desactivar",{idpersona : idpersona}, function(e){
 				bootbox.alert(e);
 				tabla.ajax.reload();
 
@@ -147,27 +124,5 @@ function desactivar(idarticulo){
 		}
 	})
 
-}
-function activar(idarticulo){
-	bootbox.confirm("Esta seguro que deces activar el articulo?", function(result){
-		if(result){
-			$.post("../ajax/articulo.php?op=activar",{idarticulo : idarticulo}, function(e){
-				bootbox.alert(e);
-				tabla.ajax.reload();
-
-			});
-		}
-	})
-
-}
-function generarbarcode(){
-	codigo =$("#codigo").val();
-	JsBarcode("#barcode", codigo);
-	$("#print").show();
-
-}
-function imprimir(){
-	$("#print").printArea();// el objeto se debe llamar print
-	//sino existe el id encerar en un div
 }
 init();
