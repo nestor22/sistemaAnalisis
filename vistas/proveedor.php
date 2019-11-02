@@ -1,6 +1,13 @@
 <?php
+ob_start();
+session_start();
+if (!isset($_SESSION["nombre"])) {
+header("location: login.html");
+}else{
 
 require 'header.php';
+if($_SESSION['compras']==1){
+
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
@@ -72,8 +79,8 @@ require 'header.php';
                             <label>Email:</label>
                             <input class="form-control" type="email" name="email" id="email" maxlength="70" placeholder="ejemplo@ejemplo.com">
                           </div>
-                          
-                          
+
+
                           <div class="from-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar">
                               <i class="fa fa-save"></i> Guardar</button>
@@ -95,10 +102,15 @@ require 'header.php';
   <!--Fin-Contenido-->
 
 <?php
-
+}else {
+  require 'noacceso.php';
+}
   require 'footer.php';
 ?>
 <script type="text/javascript" src="../public/js/JsBarcode.all.min.js"></script>
 <script type="text/javascript" src="../public/js/jquery.PrintArea.js"></script>
 <script type="text/javascript" src="scripts/proveedor.js">
 </script>
+<?php }
+ob_end_flush();
+ ?>

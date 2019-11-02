@@ -1,6 +1,13 @@
 <?php
+ob_start();
+session_start();
+if (!isset($_SESSION["nombre"])) {
+header("location: login.html");
+}else{
 
 require 'header.php';
+if($_SESSION["acceso"]==1){
+
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
@@ -20,16 +27,16 @@ require 'header.php';
                     <div class="panel-body table-responsive" id="listadoregistros">
                       <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
                         <thead>
-                       
+
                           <th>Nombre</th>
-                        
+
                         </thead>
                         <tbody>
                         </tbody>
                         <tfoot>
-                  
+
                           <th>Nombre</th>
-                       
+
 
                         </tfoot>
                       </table>
@@ -73,10 +80,15 @@ require 'header.php';
   <!--Fin-Contenido-->
 
 <?php
-
+}else {
+  require 'noacceso.php';
+}
   require 'footer.php';
 ?>
 <script type="text/javascript" src="../public/js/JsBarcode.all.min.js"></script>
 <script type="text/javascript" src="../public/js/jquery.PrintArea.js"></script>
 <script type="text/javascript" src="scripts/permiso.js">
 </script>
+<?php }
+ob_end_flush();
+ ?>
