@@ -1,11 +1,8 @@
 <?php
 require "../config/conexion.php";
 Class Articulo{
-
   public function __construct(){
-
   }
-
   public function insertar( $idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen){
     $sql = "INSERT INTO articulo( idcategoria, codigo, nombre, stock, descripcion, imagen, condicion)VALUES('$idcategoria', '$codigo', '$nombre', '$stock', '$descripcion', '$imagen', '1')";
     return ejecutarConsulta($sql);
@@ -30,5 +27,10 @@ Class Articulo{
     $sql = "SELECT a.idarticulo,a.nombre, a.idcategoria, c.nombre as categoria,  a.codigo, a.stock, a.imagen, a.condicion FROM articulo a INNER JOIN categoria c ON a.idcategoria=c.idcategoria";
     return ejecutarConsulta ($sql);
   }
+  public function listarActivos(){
+    $sql = "SELECT a.idarticulo,a.nombre, a.idcategoria, c.nombre as categoria,  a.codigo, a.stock, a.imagen, a.condicion FROM articulo a INNER JOIN categoria c ON a.idcategoria=c.idcategoria WHERE a.condicion ='1'";
+    return ejecutarConsulta ($sql);
+  }
+
 }
 ?>
