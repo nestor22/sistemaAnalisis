@@ -31,7 +31,7 @@
 	}
 		public function anular($idingreso)
 		{
-			$sql="UPDATE ingreso SET estad='Anulado' WHERE idingreso='$idingreso'";
+			$sql="UPDATE ingreso SET estado='Anulado' WHERE idingreso='$idingreso'";
 			return ejecutarConsulta($sql);
 		}
 
@@ -42,7 +42,7 @@
 		}
 		public function listar()
 		{
-			$sql="SELECT i.idingreso, DATE(i.fecha_hora) as fecha,p.idpersona,p.nombre as proveedor, u.idusuario, u.nombre as usuario,i.tipo_comprobante,i.serie_comprobante, i.num_comprobante  FROM ingreso AS i INNER JOIN persona AS p ON i.idproveedor=p.idpersona INNER JOIN usuario AS u ON i.idusuario=u.idusuario";
+			$sql="SELECT i.idingreso, DATE(i.fecha_hora) as fecha,p.idpersona,p.nombre as proveedor, u.idusuario, u.nombre as usuario,i.tipo_comprobante,i.serie_comprobante, i.num_comprobante, i.estado, i.total_compra  FROM ingreso AS i INNER JOIN persona AS p ON i.idproveedor=p.idpersona INNER JOIN usuario AS u ON i.idusuario=u.idusuario";
 			return ejecutarConsulta($sql);
 		}
 		

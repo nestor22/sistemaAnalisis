@@ -76,11 +76,11 @@ if ($_SESSION['compras']==1){
                           </div>
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>Serie(*):</label>
-                            <input class="form-control" type="text" name="serie_documento" id="serie_documento"  required>
+                            <input class="form-control" type="text" name="serie_comprobante" id="serie_comprobante"  required>
                           </div>
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>Numero(*):</label>
-                            <input class="form-control" type="text" name="num_documento" id="num_documento" required>
+                            <input class="form-control" type="text" name="num_comprobante" id="num_comprobante" required>
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">

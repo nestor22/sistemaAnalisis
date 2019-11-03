@@ -9,7 +9,7 @@ session_start();
     $idproveedor = isset($_POST["idproveedor"])?limpiarCadena($_POST["idproveedor"]):"";
     $idusuario = $_SESSION['idusuario'];
     $tipo_comprobante = isset($_POST["tipo_comprobante"])?limpiarCadena($_POST["tipo_comprobante"]):"";
-    $serie_comprobante = isset($_POST["serie_comprobante"])?limpiarCadena($_POST["serie_comrpobante"]):"";
+    $serie_comprobante = isset($_POST["serie_comprobante"])?limpiarCadena($_POST["serie_comprobante"]):"";
     $num_comprobante = isset($_POST["num_comprobante"])?limpiarCadena($_POST["num_comprobante"]):"";
     $fecha_hora = isset($_POST["fecha_hora"])?limpiarCadena($_POST["fecha_hora"]):"";
     $impuesto = isset($_POST["impuesto"])?limpiarCadena($_POST["impuesto"]):"";
