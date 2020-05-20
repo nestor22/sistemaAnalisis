@@ -5,7 +5,7 @@
  header("location: login.html");
  }else{
 
-require 'header.php';
+require 'headerNew.php';
 if($_SESSION['almacen']==1){
 
 ?>
@@ -111,7 +111,7 @@ if($_SESSION['almacen']==1){
 }else {
   require 'noacceso.php';
 }
-  require 'footer.php';
+  require 'footerNew.php';
 ?>
 <script type="text/javascript" src="../public/js/JsBarcode.all.min.js"></script>
 <script type="text/javascript" src="../public/js/jquery.PrintArea.js"></script>

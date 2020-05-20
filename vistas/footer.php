@@ -2,7 +2,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 4.5.0
         </div>
-        <strong>Copyright &copy; 2013-2019 <a href="www.dsi.com">DSI</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2013-2020 <a href="www.dsi.com">DSI</a>.</strong> All rights reserved.
     </footer>
     <!-- jQuery 2.1.4 -->
     <script src="../public/js/jquery-3.1.1.min.js"></script>
