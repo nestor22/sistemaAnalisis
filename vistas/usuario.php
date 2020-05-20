@@ -1,12 +1,12 @@
  <?php
- ob_start();
- session_start();
- if (!isset($_SESSION["nombre"])) {
- header("location: login.html");
- }else{
+ //ob_start();
+ //session_start();
+// if (!isset($_SESSION["nombre"])) {
+ //header("location: login.html");
+ //}else{
 
 require 'header.php';
-if($_SESSION['acceso']==1){
+//if($_SESSION['acceso']==1){
 
 ?>
 <!--Contenido-->
@@ -129,13 +129,13 @@ if($_SESSION['acceso']==1){
   <!--Fin-Contenido-->
 
 <?php
-}else {
-  require 'noacceso.php';
-}
+//}else {
+  //require 'noacceso.php';
+//}
   require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/usuario.js">
 </script>
-<?php }
-ob_end_flush();
+<?php //}
+//ob_end_flush();
  ?>

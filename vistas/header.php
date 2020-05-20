@@ -8,7 +8,7 @@ if(strlen(session_id())<1){
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>UMG Analisis de Sistemas</title>
+    <title>DSI Sistema de Inventarios</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -37,9 +37,9 @@ if(strlen(session_id())<1){
         <!-- Logo -->
         <a href="index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>UMG</b>Sistema de ventas</span>
+          <span class="logo-mini"><b>DSI</b></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>UMG-VENTAS</b></span>
+          <span class="logo-lg"><b>DSI-INVENTARIOS</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -65,8 +65,8 @@ if(strlen(session_id())<1){
                     <img src="../files/users/<?php echo ($_SESSION['imagen']); ?>" class="img-circle" alt="User Image">
                     <p><?php echo($_SESSION['nombre']);?></p>
                     <p>
-                      UMG - Analisis de Sistemas
-                      <small>seccion A</small>
+                      DSI - Sistema de Inventarios
+                      <small>desarrollo de soluciones Informaticas</small>
                     </p>
                   </li>
 
